@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="map_file" default="$(find scout_slam_demo)/maps/hit_2d/map.yaml"/>
+  <arg name="use_rviz" default="true"/>
+  <arg name="scout_port" default="/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_D-if00-port0"/>
+  <arg name="velodyne_ip" default="192.168.10.202"/>
+  <arg name="velodyne_port" default="2369"/>
+  <arg name="velodyne_min_range" default="0.9"/>
+  <arg name="velodyne_laserscan_ring" default="8"/>
+
+  <!-- Navigation uses Scout wheel odometry; hdl_graph_slam must be stopped. -->
+  <include file="$(find scout_slam_demo)/launch/hardware_3d.launch">
+    <arg name="scout_port" value="$(arg scout_port)"/>
+    <arg name="publish_scout_odom_tf" value="true"/>
+    <arg name="scout_odom_topic" value="/odom"/>
+    <arg name="velodyne_ip" value="$(arg velodyne_ip)"/>
+    <arg name="velodyne_port" value="$(arg velodyne_port)"/>
+    <arg name="velodyne_min_range" value="$(arg velodyne_min_range)"/>
+    <arg name="velodyne_laserscan_ring" value="$(arg velodyne_laserscan_ring)"/>
+  </include>
+
+  <node pkg="map_server" type="map_server" name="map_server"
+        args="$(arg map_file)" output="screen"/>
+
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <rosparam command="load" file="$(find scout_slam_demo)/config/amcl.yaml"/>
+    <remap from="scan" to="/scan"/>
+  </node>
+
+  <node pkg="move_base" type="move_base" name="move_base" output="screen">
+    <rosparam command="load" file="$(find scout_slam_demo)/config/move_base.yaml"/>
+    <rosparam command="load" file="$(find scout_slam_demo)/config/dwa_local_planner.yaml"/>
+    <rosparam command="load" file="$(find scout_slam_demo)/config/costmap_common.yaml" ns="global_costmap"/>
+    <rosparam command="load" file="$(find scout_slam_demo)/config/costmap_common.yaml" ns="local_costmap"/>
+    <rosparam command="load" file="$(find scout_slam_demo)/config/global_costmap.yaml"/>
+    <rosparam command="load" file="$(find scout_slam_demo)/config/local_costmap.yaml"/>
+  </node>
+
+  <node if="$(arg use_rviz)" pkg="rviz" type="rviz" name="rviz"
+        output="screen" args="-d $(find scout_slam_demo)/config/navigation_2d.rviz"/>
+</launch>
