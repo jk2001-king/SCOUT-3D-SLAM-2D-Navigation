@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <boost/filesystem.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/program_options.hpp>
 
 #include <opencv2/opencv.hpp>

@@ -1,0 +1,4 @@
+*.pcd binary
+*.pgm binary
+*.png binary
+*.rviz linguist-language=YAML
