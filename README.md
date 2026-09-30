@@ -119,8 +119,9 @@ SCOUT-3D-SLAM-2D-Navigation/
 
 ```bash
 source /opt/ros/noetic/setup.bash
-git clone https://github.com/jk2001-king/SCOUT-3D-SLAM-2D-Navigation.git ~/jung_ws
-cd ~/jung_ws
+mkdir -p ~/Research
+git clone https://github.com/jk2001-king/SCOUT-3D-SLAM-2D-Navigation.git ~/Research/scout_nav_intern_ws
+cd ~/Research/scout_nav_intern_ws
 
 sudo apt update
 sudo apt install -y \
@@ -151,7 +152,7 @@ ip -br addr show eth0
 ### 3. 하드웨어 점검
 
 ```bash
-cd ~/jung_ws
+cd ~/Research/scout_nav_intern_ws
 source devel/setup.bash
 roslaunch scout_slam_demo hardware_3d.launch
 ```

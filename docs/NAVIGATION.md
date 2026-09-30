@@ -27,7 +27,7 @@ base_link -> velodyne       static transform
 sudo ip addr replace 192.168.10.102/24 dev eth0
 sudo ip link set eth0 up
 
-cd ~/jung_ws
+cd ~/Research/scout_nav_intern_ws
 source devel/setup.bash
 roslaunch scout_slam_demo navigation_2d.launch
 ```

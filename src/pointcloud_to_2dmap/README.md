@@ -5,7 +5,7 @@ PCD의 지정 높이 구간을 2D occupancy map(PGM + YAML)으로 투영하는 �
 ## Build
 
 ```bash
-cd ~/jung_ws
+cd ~/Research/scout_nav_intern_ws
 cmake -S src/pointcloud_to_2dmap -B tools/pointcloud_to_2dmap_build
 cmake --build tools/pointcloud_to_2dmap_build -j"$(nproc)"
 ```

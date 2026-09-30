@@ -34,7 +34,7 @@ sudo apt install -y \
 source /opt/ros/noetic/setup.bash
 source ~/scout/devel/setup.bash
 
-cd ~/jung_ws
+cd ~/Research/scout_nav_intern_ws
 catkin init
 catkin config --extend ~/scout/devel
 rosdep install --from-paths src --ignore-src -r -y
@@ -55,7 +55,7 @@ rospack find hdl_graph_slam
 새 터미널에서는 다음 환경을 불러옵니다.
 
 ```bash
-cd ~/jung_ws
+cd ~/Research/scout_nav_intern_ws
 source devel/setup.bash
 ```
 

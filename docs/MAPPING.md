@@ -5,7 +5,7 @@
 다른 Scout/Velodyne launch가 실행 중이지 않은지 확인한다.
 
 ```bash
-cd ~/jung_ws
+cd ~/Research/scout_nav_intern_ws
 source devel/setup.bash
 roslaunch scout_slam_demo mapping_3d.launch
 ```
@@ -93,7 +93,7 @@ pcl_viewer "${MAP_DIR}/scout_3d.pcd"
 `pointcloud_to_2dmap`은 독립 CMake 프로젝트이다.
 
 ```bash
-cd ~/jung_ws
+cd ~/Research/scout_nav_intern_ws
 cmake -S src/pointcloud_to_2dmap -B tools/pointcloud_to_2dmap_build
 cmake --build tools/pointcloud_to_2dmap_build -j"$(nproc)"
 ```
@@ -101,7 +101,7 @@ cmake --build tools/pointcloud_to_2dmap_build -j"$(nproc)"
 ## 6. PCD → PGM/YAML
 
 ```bash
-cd ~/jung_ws
+cd ~/Research/scout_nav_intern_ws
 
 tools/pointcloud_to_2dmap_build/pointcloud_to_2dmap \
   src/scout_slam_demo/maps/scout_3d.pcd \
@@ -132,7 +132,7 @@ maps/scout_2d/map.yaml
 
 ```bash
 rosrun map_server map_server \
-  ~/jung_ws/src/scout_slam_demo/maps/scout_2d/map.yaml
+  ~/Research/scout_nav_intern_ws/src/scout_slam_demo/maps/scout_2d/map.yaml
 ```
 
 RViz Fixed Frame을 `map`으로 설정하고 `/map`을 표시한다.
