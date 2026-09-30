@@ -1,6 +1,6 @@
 # pointcloud_to_2dmap
 
-PCD의 지정 높이 구간을 2D occupancy map(PGM + YAML)으로 투영하는 독립 CMake 도구입니다.
+PCD의 지정 높이 구간을 2D occupancy map(PGM + YAML)으로 투영하는 독립 CMake 도구이다.
 
 ## Build
 
@@ -36,6 +36,6 @@ tools/pointcloud_to_2dmap_build/pointcloud_to_2dmap \
 | `--crop_margin` | `0.0` | occupied 영역 주변 여백(m)으로 자동 crop |
 | `--unknown_border` | `0.0` | crop 결과 주변 unknown border 폭(m) |
 
-출력 디렉터리에 `map.pgm`과 상대 이미지 경로를 사용하는 `map.yaml`을 생성합니다.
+출력 디렉터리에 `map.pgm`과 상대 이미지 경로를 사용하는 `map.yaml`을 생성한다.
 
-Scout 프로젝트의 검증된 변환 절차와 높이값은 [Mapping 문서](../../docs/MAPPING.md)를 참고하세요.
+Scout 프로젝트의 검증된 변환 절차와 높이값은 [Mapping 문서](../../docs/MAPPING.md)를 참고한다.

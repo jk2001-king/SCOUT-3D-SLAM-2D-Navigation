@@ -2,7 +2,7 @@
 
 ## 구성과 TF
 
-Navigation 단계에서는 3D SLAM을 종료하고 다음 구성만 사용합니다.
+Navigation 단계에서는 3D SLAM을 종료하고 다음 구성만 사용한다.
 
 ```text
 Scout driver + wheel odometry
@@ -21,7 +21,7 @@ base_link -> velodyne       static transform
 
 ## 실행
 
-먼저 매핑 및 하드웨어 점검 launch가 모두 종료됐는지 확인합니다.
+먼저 매핑 및 하드웨어 점검 launch가 모두 종료됐는지 확인한다.
 
 ```bash
 sudo ip addr replace 192.168.10.102/24 dev eth0
@@ -63,13 +63,13 @@ rosrun tf tf_echo map base_link
 
 ## RViz 운용 순서
 
-1. `2D Pose Estimate`로 실제 로봇 위치와 방향을 지정합니다.
-2. 로봇을 조금 움직여 AMCL particle이 수렴하는지 확인합니다.
-3. `2D Nav Goal`로 목표 위치와 최종 방향을 설정합니다.
-4. Global Plan, Local Plan, costmap, `/cmd_vel`을 관찰합니다.
-5. 목표 취소 시 즉시 정지하는지 확인합니다.
+1. `2D Pose Estimate`로 실제 로봇 위치와 방향을 지정한다.
+2. 로봇을 조금 움직여 AMCL particle이 수렴하는지 확인한다.
+3. `2D Nav Goal`로 목표 위치와 최종 방향을 설정한다.
+4. Global Plan, Local Plan, costmap, `/cmd_vel`을 관찰한다.
+5. 목표 취소 시 즉시 정지하는지 확인한다.
 
-첫 목표가 끝난 뒤 Pose Estimate를 다시 주지 않고 다음 목표를 설정할 수 있습니다. 실제 시험에서 직진, 좌·우회전, 좁은 통로 및 목표 도착 후 자세 정렬을 연속 수행했습니다.
+첫 목표가 끝난 뒤 Pose Estimate를 다시 주지 않고 다음 목표를 설정할 수 있다. 실제 시험에서 직진, 좌·우회전, 좁은 통로 및 목표 도착 후 자세 정렬을 연속 수행했다.
 
 ## 검증된 DWA 설정
 
@@ -83,11 +83,11 @@ rosrun tf tf_echo map base_link
 | `path_distance_bias` | `48.0` | global path 추종 강화 |
 | `twirling_scale` | `0.20` | 불필요한 회전과 코너링의 균형 |
 
-이 값들은 실주행에 성공한 최종 설정입니다. 환경 변화에 대한 근거 없이 여러 값을 동시에 수정하지 않는 것을 권장합니다.
+이 값들은 실주행에 성공한 최종 설정이다. 환경 변화에 대한 근거 없이 여러 값을 동시에 수정하지 않는 것을 권장한다.
 
 ## 센서와 footprint
 
-Costmap은 VLP-16 ring 8의 `/scan`을 사용합니다.
+Costmap은 VLP-16 ring 8의 `/scan`을 사용한다.
 
 ```text
 sensor frame: velodyne
@@ -95,12 +95,12 @@ obstacle range: 8.0 m
 raytrace range: 10.0 m
 ```
 
-차체 footprint는 앞뒤 ±0.47 m, 좌우 ±0.35 m, padding 0.03 m입니다. 실제 차체나 장착물이 더 크면 값을 늘려야 합니다.
+차체 footprint는 앞뒤 ±0.47 m, 좌우 ±0.35 m, padding 0.03 m이다. 실제 차체나 장착물이 더 크면 값을 늘려야 한다.
 
 ## 안전 시험 순서
 
-1. 리모컨과 비상정지를 확인합니다.
-2. 가까운 직선 목표를 낮은 속도로 시험합니다.
-3. 완만한 회전과 최종 자세 정렬을 시험합니다.
-4. 충분한 여유가 있을 때만 좁은 통로를 시험합니다.
-5. 사람이 있는 공간에서는 자동 주행을 시작하지 않습니다.
+1. 리모컨과 비상정지를 확인한다.
+2. 가까운 직선 목표를 낮은 속도로 시험한다.
+3. 완만한 회전과 최종 자세 정렬을 시험한다.
+4. 충분한 여유가 있을 때만 좁은 통로를 시험한다.
+5. 사람이 있는 공간에서는 자동 주행을 시작하지 않는다.

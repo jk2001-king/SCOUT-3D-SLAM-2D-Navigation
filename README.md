@@ -1,10 +1,10 @@
 # SCOUT 3D SLAM & 2D Navigation
 
-Scout V2와 Velodyne VLP-16으로 **3D 지도를 작성하고, 이를 2D occupancy map으로 변환해 자율주행하는 ROS 1 프로젝트**입니다.
+Scout V2와 Velodyne VLP-16으로 **3D 지도를 작성하고, 이를 2D occupancy map으로 변환해 자율주행하는 ROS 1 프로젝트**이다.
 
-Jetson에서 `hdl_graph_slam`과 Fast GICP로 3D SLAM을 수행하고, 생성된 PCD를 높이 구간으로 투영해 PGM/YAML 지도를 만듭니다. 주행 단계에서는 Scout 휠 오도메트리, Velodyne 단일 ring LaserScan, AMCL, `move_base`, DWA Local Planner를 사용합니다.
+Jetson에서 `hdl_graph_slam`과 Fast GICP로 3D SLAM을 수행하고, 생성된 PCD를 높이 구간으로 투영해 PGM/YAML 지도를 만듭니다. 주행 단계에서는 Scout 휠 오도메트리, Velodyne 단일 ring LaserScan, AMCL, `move_base`, DWA Local Planner를 사용한다.
 
-> 실제 Scout에서 3D 매핑, 지도 변환, 위치 추정, 연속 목표 주행, 좁은 통로 통과, 좌·우회전 및 목표 자세 정렬까지 검증한 설정입니다.
+> 실제 Scout에서 3D 매핑, 지도 변환, 위치 추정, 연속 목표 주행, 좁은 통로 통과, 좌·우회전 및 목표 자세 정렬까지 검증한 설정이다.
 
 ![ROS Noetic](https://img.shields.io/badge/ROS-Noetic-22314E?logo=ros)
 ![Ubuntu 20.04](https://img.shields.io/badge/Ubuntu-20.04-E95420?logo=ubuntu&logoColor=white)
@@ -48,7 +48,7 @@ x=0.34, y=0.0, z=0.185
 roll=0.0, pitch=0.0, yaw=0.0
 ```
 
-장비가 다르면 launch argument로 반드시 변경해야 합니다.
+장비가 다르면 launch argument로 반드시 변경해야 한다.
 
 ## 데이터 흐름
 
@@ -79,7 +79,7 @@ map ── odom ── base_link ── velodyne
  └─ hdl_graph_slam map2odom publisher
 ```
 
-매핑 중 Scout 휠 오도메트리는 `/scout_odom`으로만 발행하고 TF는 내보내지 않습니다. `/odom`과 `odom -> base_link`는 LiDAR scan matching이 단독으로 소유합니다.
+매핑 중 Scout 휠 오도메트리는 `/scout_odom`으로만 발행하고 TF는 내보내지 않는다. `/odom`과 `odom -> base_link`는 LiDAR scan matching이 단독으로 소유한다.
 
 ### Navigation TF
 
@@ -91,7 +91,7 @@ map ── odom ── base_link ── velodyne
  └─ AMCL
 ```
 
-Navigation 중에는 `hdl_graph_slam`을 종료합니다. Scout 드라이버가 `/odom`과 `odom -> base_link`를 발행하고 AMCL이 `map -> odom`을 담당합니다.
+Navigation 중에는 `hdl_graph_slam`을 종료한다. Scout 드라이버가 `/odom`과 `odom -> base_link`를 발행하고 AMCL이 `map -> odom`을 담당한다.
 
 ## 저장소 구조
 
@@ -111,7 +111,7 @@ SCOUT-3D-SLAM-2D-Navigation/
 └── .gitignore
 ```
 
-`scout_slam_demo`가 이 저장소의 통합 계층입니다. `hdl_graph_slam`, `fast_gicp`, `ndt_omp`는 각 원저작자의 오픈소스 프로젝트이며 라이선스와 원본 README를 유지합니다.
+`scout_slam_demo`가 이 저장소의 통합 계층이다. `hdl_graph_slam`, `fast_gicp`, `ndt_omp`는 각 원저작자의 오픈소스 프로젝트이며 라이선스와 원본 README를 유지한다.
 
 ## 빠른 시작
 
@@ -138,7 +138,7 @@ catkin build
 source devel/setup.bash
 ```
 
-Scout 드라이버와 URDF 패키지는 별도 워크스페이스의 `scout_base`, `scout_description`을 사용합니다. 상세 내용은 [환경 설정 및 빌드](docs/SETUP.md)를 참고하세요.
+Scout 드라이버와 URDF 패키지는 별도 워크스페이스의 `scout_base`, `scout_description`을 사용한다. 상세 내용은 [환경 설정 및 빌드](docs/SETUP.md)를 참고한다.
 
 ### 2. Velodyne 네트워크
 
@@ -170,7 +170,7 @@ rosrun tf tf_echo base_link velodyne
 roslaunch scout_slam_demo mapping_3d.launch
 ```
 
-지도 저장과 변환은 [3D Mapping 및 2D 지도 생성](docs/MAPPING.md)을 참고하세요.
+지도 저장과 변환은 [3D Mapping 및 2D 지도 생성](docs/MAPPING.md)을 참고한다.
 
 ### 5. 2D Navigation
 
@@ -178,14 +178,14 @@ roslaunch scout_slam_demo mapping_3d.launch
 roslaunch scout_slam_demo navigation_2d.launch
 ```
 
-기본 지도는 `maps/hit_2d/map.yaml`입니다. 다른 지도를 사용할 때는:
+기본 지도는 `maps/hit_2d/map.yaml`이다. 다른 지도를 사용할 때는:
 
 ```bash
 roslaunch scout_slam_demo navigation_2d.launch \
   map_file:=$(rospack find scout_slam_demo)/maps/demo_2d/map.yaml
 ```
 
-RViz에서 `2D Pose Estimate`로 초기 자세를 지정한 뒤 `2D Nav Goal`을 설정합니다.
+RViz에서 `2D Pose Estimate`로 초기 자세를 지정한 뒤 `2D Nav Goal`을 설정한다.
 
 ## 검증된 토픽
 
@@ -201,11 +201,11 @@ RViz에서 `2D Pose Estimate`로 초기 자세를 지정한 뒤 `2D Nav Goal`을
 
 ## 안전 주의사항
 
-- 첫 시험은 넓고 평평하며 사람이 없는 공간에서 진행합니다.
-- 리모컨과 비상정지를 즉시 사용할 수 있는 상태를 유지합니다.
-- 매핑과 Navigation launch를 동시에 실행하지 않습니다.
-- 새 환경에서는 낮은 속도로 TF, odometry, costmap을 먼저 검증합니다.
-- footprint와 센서 TF가 실제 차체 및 장착 위치와 맞는지 확인합니다.
+- 첫 시험은 넓고 평평하며 사람이 없는 공간에서 진행한다.
+- 리모컨과 비상정지를 즉시 사용할 수 있는 상태를 유지한다.
+- 매핑과 Navigation launch를 동시에 실행하지 않는다.
+- 새 환경에서는 낮은 속도로 TF, odometry, costmap을 먼저 검증한다.
+- footprint와 센서 TF가 실제 차체 및 장착 위치와 맞는지 확인한다.
 
 ## 문서
 

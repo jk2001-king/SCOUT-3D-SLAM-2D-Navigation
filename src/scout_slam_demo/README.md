@@ -1,8 +1,8 @@
 # scout_slam_demo
 
-Scout V2와 Velodyne VLP-16을 HDL Graph SLAM, AMCL, `move_base`에 연결하는 프로젝트 통합 패키지입니다.
+Scout V2와 Velodyne VLP-16을 HDL Graph SLAM, AMCL, `move_base`에 연결하는 프로젝트 통합 패키지이다.
 
-전체 시스템 설명과 설치 절차는 저장소 [메인 README](../../README.md)를 참고하세요.
+전체 시스템 설명과 설치 절차는 저장소 [메인 README](../../README.md)를 참고한다.
 
 ## Launch files
 
@@ -38,7 +38,7 @@ odom -> base_link           scan_matching_odometry
 base_link -> velodyne       static transform
 ```
 
-Scout wheel odometry는 TF 없이 `/scout_odom`으로 보존됩니다.
+Scout wheel odometry는 TF 없이 `/scout_odom`으로 보존된다.
 
 ## Navigation
 
@@ -61,7 +61,7 @@ odom -> base_link           Scout driver
 base_link -> velodyne       static transform
 ```
 
-매핑과 Navigation launch를 동시에 실행하지 마세요.
+매핑과 Navigation launch를 동시에 실행하지 않는다.
 
 ## Configuration
 
